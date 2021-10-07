@@ -9,8 +9,6 @@ jobs:
       - run: node app.js
       - run: git config --global user.email "jrawebapp@xilab.org"
       - run: git config --global user.name "handson-llc"
-      - run: git commit -am "data from JRA"
-      - run: git push git@github.com:handson-llc/doctor-data.git master
 workflows:
   version: 2
   execute-workflow:
