@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  execute:
+    docker:
+      - image: circleci/node:latest-browsers
+    steps:
+      - checkout
+      - run: yarn install
+      - run: node app.js
+      - run: git config --global user.email "jrawebapp@xilab.org"
+      - run: git config --global user.name "handson-llc"
+      - run: git commit -am "data from JRA"
+      - run: git push git@github.com:handson-llc/doctor-data.git master
+workflows:
+  version: 2
+  execute-workflow:
+    triggers:
+      - schedule:
+          cron: '0 9 * * 1,4' # UTC
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - execute
