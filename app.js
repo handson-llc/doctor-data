@@ -13,6 +13,17 @@ function writeFile(path, data) {
 	});
 }
 
+function getNowYMDhmStr() {
+	const date = new Date()
+	const Y = date.getFullYear()
+	const M = ("00" + (date.getMonth()+1)).slice(-2)
+	const D = ("00" + date.getDate()).slice(-2)
+	const hh = ("00" + date.getHours()).slice(-2)
+	const mm = ("00" + date.getMinutes()).slice(-2)
+	return Y + "/" + M + "/" + D + " " + hh + ":" + mm
+}
+
+
 // Tips
 // ローカル環境などでPuppeteerを利用する場合、
 // const browser = await puppeteer.launch();
@@ -35,6 +46,7 @@ function randomWait(millisec = 500){
 
 	top_url = "https://www.jra.go.jp/datafile/meikan/trainer.html"
 	output_file = "data/horse.json"
+	log_file = "data/log.json"
 	timeout = 2500
 
 	try {
@@ -127,8 +139,10 @@ function randomWait(millisec = 500){
 		}
 
 		console.log(json_data)
-
 		writeFile(output_file, json_data)
+
+		let log_data = { "last_update_date" : getNowYMDhmStr() }
+		writeFile(log_file, log_data)
 
 		return 
 
