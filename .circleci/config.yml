@@ -16,7 +16,7 @@ workflows:
   execute-workflow:
     triggers:
       - schedule:
-          cron: '0 3 * * 1,5' # UTC
+          cron: '40 4 * * 1,5' # UTC
           filters:
             branches:
               only:
