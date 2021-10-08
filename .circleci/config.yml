@@ -9,12 +9,14 @@ jobs:
       - run: node app.js
       - run: git config --global user.email "jrawebapp@xilab.org"
       - run: git config --global user.name "handson-llc"
+      - run: git commit -am "data from JRA"
+      - run: git push git@github.com:handson-llc/doctor-data.git main
 workflows:
   version: 2
   execute-workflow:
     triggers:
       - schedule:
-          cron: '0 1 * * 1,5' # UTC
+          cron: '50 2 * * 1,5' # UTC
           filters:
             branches:
               only:
