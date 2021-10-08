@@ -18,6 +18,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - execute
